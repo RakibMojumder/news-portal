@@ -84,8 +84,7 @@ const showNews = (newsList) => {
                         </div>
                     </div>
                     <div class="text-right">
-                        <button class="bg-blue-600 py-2 px-6 rounded-full text-white">show all <span><i
-                                    class="fa-solid fa-arrow-right-long ml-2"></i></span></button>
+                    <label for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
                     </div>
                 </div>
             </div>
@@ -96,4 +95,4 @@ const showNews = (newsList) => {
     })
 }
 
-fetchNewsCatagories()
+fetchNewsCatagories();
