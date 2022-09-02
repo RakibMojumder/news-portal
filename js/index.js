@@ -29,36 +29,29 @@ const showCatagories = catagoriesList => {
 
 
 // fetch news
-
 const fetchNews = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     const result = await res.json()
     showNews(result.data)
 }
 
+// show news
 const showNews = newsList => {
+    console.log(newsList)
     const newsSectionDiv = document.getElementById('news-section');
     newsSectionDiv.textContent = '';
     newsList.forEach(news => {
-        console.log(news)
+        console.log(news);
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('container', 'mx-auto');
         containerDiv.innerHTML = `
         <div class="row grid grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
             <div class="col-span-2">
-                <img src="../img/unsplash_EhTcC9sYXsw.png" alt="">
+                <img src="${news.thumbnail_url}" alt="">
             </div>
             <div class="col-span-10 p-5">
-                <h3 class="text-2xl font-semibold mb-4">The best fashion influencers to follow for sartorial
-                    inspiration
-                </h3>
-                <p class="text-gray-400">From our favourite UK influencers to the best missives from Milan and the
-                    coolest New Yorkers, read
-                    on some of the best fashion blogs out there, and for even more inspiration, do head to our separate
-                    black fashion influencer round-up.
-
-                    Fancy some shopping deals? Check out these amazing sales: Zara Black Friday, ASOS Black Friday,
-                    Missoma Black Friday and Gucci Black FridayThe best fashion influencers to follow for sartorial</p>
+                <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
+                <p class="text-gray-400">${news.details.length > 400 ? news.details.slice(0, 400) + '...' : news.details}</p>
 
                 <div class="grid grid-cols-4 mt-5">
                     <div class="flex items-center">
@@ -67,7 +60,7 @@ const showNews = newsList => {
                     </div>
                     <div class="flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3">1.5M</h5>
+                        <h5 class="ml-3">${news.total_view}</h5>
                     </div>
                     <div class="flex justify-center items-center">
                         <div>
