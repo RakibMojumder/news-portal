@@ -90,7 +90,7 @@ const showNews = (newsList) => {
                         </div>
                     </div>
                     <div class="text-right">
-                    <label for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
+                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
                     </div>
                 </div>
             </div>
@@ -99,6 +99,20 @@ const showNews = (newsList) => {
 
         newsSectionDiv.appendChild(containerDiv);
     })
+}
+
+
+
+// fetch news details
+const fetchNewsDetails = async (newsId) => {
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/news/${newsId}`)
+        const result = await res.json()
+        console.log(result.data[0])
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
 
