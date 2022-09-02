@@ -44,16 +44,22 @@ const fetchNews = async (id) => {
 // show news
 const showNews = (newsList) => {
     // console.log(newsList)
+
+    // sorted all news
+    const sortNewsList = newsList.sort((a, b) => b.total_view - a.total_view);
+
+    // get news setion div
     const newsSectionDiv = document.getElementById('news-section');
     newsSectionDiv.innerHTML = '';
 
 
+    //get news number input feild
     const newsNumberInputFeild = document.getElementById('news-number-input-feild');
     newsNumberInputFeild.value = `${newsList.length === 0 ? 'No data found' : newsList.length + ' items found'}`;
     newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
 
-    newsList.forEach(news => {
-        console.log(news);
+    sortNewsList.forEach(news => {
+        // console.log(news);
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('container', 'mx-auto', 'm-5');
         containerDiv.innerHTML = `
@@ -94,5 +100,6 @@ const showNews = (newsList) => {
         newsSectionDiv.appendChild(containerDiv);
     })
 }
+
 
 fetchNewsCatagories();
