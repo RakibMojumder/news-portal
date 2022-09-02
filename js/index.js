@@ -5,7 +5,7 @@ const fetchNewsCatagories = async () => {
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/categories`);
         const result = await res.json()
-        showCatagories(result.data.news_category)
+        showCatagories(result.data.news_category);
     }
     catch (err) {
         console.log(err)
@@ -15,12 +15,13 @@ const fetchNewsCatagories = async () => {
 // show news catagories
 const showCatagories = catagoriesList => {
     // console.log(catagoriesList);
+
     const catagoriesDiv = document.getElementById('catagories-div');
     catagoriesList.forEach(catagories => {
         const div = document.createElement('div');
         div.classList.add('text-center', 'font-semibold')
         div.innerHTML = `
-        <button onclick="fetchNews('${catagories.category_id}')">${catagories.category_name}</button>
+        <button onclick="fetchNews('${catagories.category_id}')" class="focus:underline underline-offset-4 focus:text-blue-600">${catagories.category_name}</button>
         `;
 
         catagoriesDiv.appendChild(div);
@@ -30,20 +31,31 @@ const showCatagories = catagoriesList => {
 
 // fetch news
 const fetchNews = async (id) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
-    const result = await res.json()
-    showNews(result.data)
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
+        const result = await res.json()
+        showNews(result.data)
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
 // show news
 const showNews = (newsList) => {
     // console.log(newsList)
     const newsSectionDiv = document.getElementById('news-section');
-    newsSectionDiv.textContent = '';
+    newsSectionDiv.innerHTML = '';
+
+
+    const newsNumberInputFeild = document.getElementById('news-number-input-feild');
+    newsNumberInputFeild.value = `${newsList.length === 0 ? 'No data found' : newsList.length + ' items found'}`;
+    newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
+
     newsList.forEach(news => {
         console.log(news);
         const containerDiv = document.createElement('div');
-        containerDiv.classList.add('container', 'mx-auto', 'mb-10');
+        containerDiv.classList.add('container', 'mx-auto', 'm-5');
         containerDiv.innerHTML = `
         <div class="row grid grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
             <div class="col-span-2">
@@ -51,16 +63,16 @@ const showNews = (newsList) => {
             </div>
             <div class="col-span-10 p-5">
                 <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
-                <p class="text-gray-400">${news.details.length > 450 ? news.details.slice(0, 450) + '...' : news.details}</p>
+                <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' : news.details}</p>
 
                 <div class="grid grid-cols-4 mt-5">
                     <div class="flex items-center">
-                        <img src="../img/Avatar.png" alt="">
-                        <h5 class="ml-3">${news.author.name}</h5>
+                        <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
+                        <h5 class="ml-3">${news.author.name ? news.author.name : 'no data found'}</h5>
                     </div>
                     <div class="flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3 font-semibold">${news.total_view}M</h5>
+                        <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
                     </div>
                     <div class="flex justify-center items-center">
                         <div>
@@ -84,5 +96,4 @@ const showNews = (newsList) => {
     })
 }
 
-// fetchNews()
 fetchNewsCatagories()

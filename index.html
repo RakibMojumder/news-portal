@@ -19,7 +19,8 @@
     <header class="container mx-auto border-b">
         <div class="navbar bg-base-100">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">Daily <span class="text-blue-600 ml-3">NEWS</span></a>
+                <a class="btn btn-ghost normal-case text-2xl">Daily <span
+                        class="text-white text-xl ml-3 bg-blue-600 py-1 px-4 rounded-md">NEWS</span></a>
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
@@ -31,7 +32,7 @@
         </div>
     </header>
 
-    <main class="container mx-auto mt-8">
+    <main style="width: 1200px;" class="mx-auto mt-8">
         <!-- nav bar section -->
         <nav class="grid grid-cols-12 bg-gray-50 py-5 my-5">
             <div class="home-catagories col-span-1 font-semibold flex justify-center items-center">Home</div>
@@ -39,6 +40,30 @@
                 <div id="catagories-div" class="grid grid-cols-8"></div>
             </div>
         </nav>
+
+        <!-- total data number show section -->
+        <section>
+            <div>
+                <input id="news-number-input-feild" type="text" placeholder="Type here"
+                    class="input input-bordered w-full" />
+            </div>
+        </section>
+
+
+        <!-- sort news section -->
+        <section class="my-8">
+            <div class="grid grid-cols-2">
+                <div class="flex items-center">
+                    <h1 class="mr-4 font-semibold text-xl">Sort By :</h1>
+                    <div><input type="text" placeholder="Default" class="py-2 border rounded-md pl-4" /></div>
+                </div>
+                <div class="text-right">
+                    <button class="py-2 px-8 bg-blue-600 text-white mr-4 rounded-md">Today's Pick</button>
+                    <button class="border border-blue-600 py-2 px-8 text-blue-600 rounded-md">Trending</button>
+                </div>
+            </div>
+        </section>
+
 
         <!-- news section -->
         <section>
