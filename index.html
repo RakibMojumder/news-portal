@@ -35,7 +35,7 @@
     <main style="width: 1200px;" class="mx-auto mt-8">
         <!-- nav bar section -->
         <nav class="grid grid-cols-12 bg-gray-50 py-5 my-5">
-            <div class="home-catagories col-span-1 font-semibold flex justify-center items-center">Home</div>
+            <div class="col-span-1 font-semibold flex justify-center items-center">Home</div>
             <div class="home-catagories col-span-11">
                 <div id="catagories-div" class="grid grid-cols-8"></div>
             </div>
@@ -77,13 +77,51 @@
             <div class="modal">
                 <div class="modal-box relative">
                     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
-                        for
-                        free!</p>
+                    <div id="modal-body"></div>
                 </div>
             </div>
         </section>
+
+
+
+        <!--  -->
+
+
+        <!-- <div class="row grid grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
+            <div class="col-span-2">
+                <img src="${news.thumbnail_url}" alt="">
+            </div>
+            <div class="col-span-10 p-5">
+                <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
+                <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' :
+                    news.details}</p>
+
+                <div class="grid grid-cols-4 mt-5">
+                    <div class="flex items-center">
+                        <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
+                        <h5 class="ml-3">${news.author.name ? news.author.name : 'no data found'}</h5>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div><i class="fa-solid fa-eye"></i></div>
+                        <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <div>
+                            <span><i class="fa-solid fa-star-half-stroke"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3"
+                            class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open
+                            modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </main>
 
 

@@ -6,6 +6,7 @@ const fetchNewsCatagories = async () => {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/categories`);
         const result = await res.json()
         showCatagories(result.data.news_category);
+        fetchNews("08");
     }
     catch (err) {
         console.log(err)
@@ -14,7 +15,6 @@ const fetchNewsCatagories = async () => {
 
 // show news catagories
 const showCatagories = catagoriesList => {
-    // console.log(catagoriesList);
 
     const catagoriesDiv = document.getElementById('catagories-div');
     catagoriesList.forEach(catagories => {
@@ -59,7 +59,6 @@ const showNews = (newsList) => {
     newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
 
     sortNewsList.forEach(news => {
-        // console.log(news);
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('container', 'mx-auto', 'm-5');
         containerDiv.innerHTML = `
@@ -108,11 +107,43 @@ const fetchNewsDetails = async (newsId) => {
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/${newsId}`)
         const result = await res.json()
-        console.log(result.data[0])
+        showNewsDetails(result.data[0])
     }
     catch (err) {
         console.log(err);
     }
+}
+
+const showNewsDetails = (newsDetails) => {
+    console.log(newsDetails);
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = '';
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <img src="${newsDetails.image_url}"/>
+    <h3 class="text-lg font-bold my-4">${newsDetails.title}</h3>
+    <p>${newsDetails.details}</p>
+    <div class="grid grid-cols-12 mt-5">
+                    <div class="col-span-5 flex items-center">
+                        <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
+                        <h5 class="ml-3">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
+                    </div>
+                    <div class="col-span-2 flex items-center justify-center">
+                        <div><i class="fa-solid fa-eye"></i></div>
+                        <h5 class="ml-3 font-semibold">${newsDetails.total_view + 'M'}</h5>
+                    </div>
+                    <div class="col-span-5 flex justify-end items-center">
+                        <div>
+                            <span><i class="fa-solid fa-star-half-stroke"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <span><i class="fa-regular fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+    `;
+    modalBody.appendChild(div)
 }
 
 
