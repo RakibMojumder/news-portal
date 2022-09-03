@@ -44,8 +44,8 @@
         <!-- total data number show section -->
         <section>
             <div>
-                <input id="news-number-input-feild" type="text" placeholder="Type here"
-                    class="input input-bordered w-full" />
+                <input id="news-number-input-feild" readonly type="text" placeholder="Type here"
+                    class="input input-bordered w-full focus:outline-none" />
             </div>
         </section>
 
@@ -58,12 +58,17 @@
                     <div><input type="text" placeholder="Default" class="py-2 border rounded-md pl-4" /></div>
                 </div>
                 <div class="text-right">
-                    <button class="py-2 px-8 bg-blue-600 text-white mr-4 rounded-md">Today's Pick</button>
-                    <button class="border border-blue-600 py-2 px-8 text-blue-600 rounded-md">Trending</button>
+                    <button class="py-2 px-8 bg-blue-600 text-white mr-4 rounded-full">Today's Pick</button>
+                    <button class="border border-blue-600 py-2 px-8 text-blue-600 rounded-full">Trending</button>
                 </div>
             </div>
         </section>
 
+
+        <!-- spinner section -->
+        <section id="spinner" class="text-center hidden">
+            <button class="btn loading">loading</button>
+        </section>
 
         <!-- news section -->
         <section>
@@ -81,47 +86,6 @@
                 </div>
             </div>
         </section>
-
-
-
-        <!--  -->
-
-
-        <!-- <div class="row grid grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
-            <div class="col-span-2">
-                <img src="${news.thumbnail_url}" alt="">
-            </div>
-            <div class="col-span-10 p-5">
-                <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
-                <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' :
-                    news.details}</p>
-
-                <div class="grid grid-cols-4 mt-5">
-                    <div class="flex items-center">
-                        <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
-                        <h5 class="ml-3">${news.author.name ? news.author.name : 'no data found'}</h5>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
-                    </div>
-                    <div class="flex justify-center items-center">
-                        <div>
-                            <span><i class="fa-solid fa-star-half-stroke"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3"
-                            class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open
-                            modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </main>
 
 

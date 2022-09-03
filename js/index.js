@@ -6,7 +6,7 @@ const fetchNewsCatagories = async () => {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/categories`);
         const result = await res.json()
         showCatagories(result.data.news_category);
-        fetchNews("08");
+        // fetchNews("08");
     }
     catch (err) {
         console.log(err)
@@ -31,6 +31,7 @@ const showCatagories = catagoriesList => {
 
 // fetch news
 const fetchNews = async (id) => {
+    loadSpinner(true);
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         const result = await res.json()
@@ -43,7 +44,10 @@ const fetchNews = async (id) => {
 
 // show news
 const showNews = (newsList) => {
-    // console.log(newsList)
+
+    if (newsList.length === 0) {
+        loadSpinner(false);
+    }
 
     // sorted all news
     const sortNewsList = newsList.sort((a, b) => b.total_view - a.total_view);
@@ -89,7 +93,7 @@ const showNews = (newsList) => {
                         </div>
                     </div>
                     <div class="text-right">
-                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">open modal <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
+                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Show Details <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
                     </div>
                 </div>
             </div>
@@ -97,8 +101,22 @@ const showNews = (newsList) => {
         `;
 
         newsSectionDiv.appendChild(containerDiv);
-    })
+    });
+
+    loadSpinner(false);
 }
+
+
+// load spinner
+const loadSpinner = (isLoading) => {
+    const spinner = document.getElementById('spinner');
+    if (isLoading) {
+        spinner.classList.remove('hidden');
+    } else {
+        spinner.classList.add('hidden');
+    }
+}
+
 
 
 
@@ -114,25 +132,29 @@ const fetchNewsDetails = async (newsId) => {
     }
 }
 
+
+// show newa details 
 const showNewsDetails = (newsDetails) => {
     console.log(newsDetails);
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = '';
+
+    // Create new div
     const div = document.createElement('div');
     div.innerHTML = `
     <img src="${newsDetails.image_url}"/>
     <h3 class="text-lg font-bold my-4">${newsDetails.title}</h3>
     <p>${newsDetails.details}</p>
     <div class="grid grid-cols-12 mt-5">
-                    <div class="col-span-5 flex items-center">
+                    <div class="col-span-4 flex items-center">
                         <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
                         <h5 class="ml-3">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
                     </div>
-                    <div class="col-span-2 flex items-center justify-center">
+                    <div class="col-span-4 flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3 font-semibold">${newsDetails.total_view + 'M'}</h5>
+                        <h5 class="ml-3 font-semibold">${newsDetails.total_view ? newsDetails.total_view + 'M' : 'No data found'}</h5>
                     </div>
-                    <div class="col-span-5 flex justify-end items-center">
+                    <div class="col-span-4 flex justify-end items-center">
                         <div>
                             <span><i class="fa-solid fa-star-half-stroke"></i></span>
                             <span><i class="fa-regular fa-star"></i></span>
@@ -146,5 +168,5 @@ const showNewsDetails = (newsDetails) => {
     modalBody.appendChild(div)
 }
 
-
+fetchNews('08')
 fetchNewsCatagories();
