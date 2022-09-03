@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News</title>
+    <!-- font awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <!-- Font awesome cdn-->
+    <script src="https://kit.fontawesome.com/cb1f6059b6.js" crossorigin="anonymous"></script>
+    <!-- daisy ui cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="container mx-auto border-b">
+        <div class="navbar bg-base-100">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <label tabindex="0" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </label>
+                    <ul tabindex="0"
+                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a href="./index.html" class="font-semibold">News</a> </li>
+                        <li><a href="" class="underline underline-offset-4 text-blue-600 font-semibold">Blog </a></li>
+                    </ul>
+                </div>
+                <a class="btn btn-ghost normal-case text-xl">
+                    <a class="btn btn-ghost normal-case text-2xl">Daily <span
+                            class="text-white text-xl ml-3 bg-blue-600 py-1 px-4 rounded-md">NEWS</span></a>
+                </a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal p-0">
+                    <li><a href="./index.html" class="font-semibold">News</a></li>
+                    <li><a href="" class="underline underline-offset-4 text-blue-600 font-semibold">Blog </a></li>
+                </ul>
+            </div>
+            <div class="navbar-end list-none">
+                <li><img src="img/Avatar.png" alt=""></li>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="container mx-auto mt-16 h-screen ">
+        <div class="mb-20">
+            <h1 style="font-family: 'Lobster', cursive;" class="text-6xl text-center text-blue-600 mt-10 mb-2">Featured
+                Blogs
+            </h1>
+            <img src="./img/./remove-bg.png" class="w-80 mx-auto" alt="">
+        </div>
+
+        <!-- accordion -->
+        <section class="grid grid-cols-12 justify-center items-center">
+            <div class="col-span-2"></div>
+            <div class="col-span-8">
+                <div class="blog-item-one mb-3">
+                    <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+                        <div class="collapse-title text-xl font-medium">
+                            What is the difference between var, let and const ?
+                        </div>
+                        <div class="collapse-content">
+                            <ul>
+                                <li class="mb-2">1. <b>Var</b> declarations are globally scoped or function scoped.
+                                    <b>Let</b> & <b>Const</b> are Blockd scope;
+                                </li>
+                                <li class="mb-2">2. <b>Var</b> can be redeclared. But <b>Let</b> &
+                                    <b>Const</b> can
+                                    not be redeclared.
+                                </li>
+                                <li class="mb-2">3. <b>Var</b> & <b>Let</b> can be reassigned. But
+                                    <b>Const</b> can
+                                    not
+                                    be reassigned.
+                                <li class="mb-2">4. <b>Var</b> and <b>Const</b> can be declared without being
+                                    initialized <b>Const
+                                    </b>must be initialized during declaration.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-item-two mb-3">
+                    <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+                        <div class="collapse-title text-xl font-medium">
+                            What is the difference between arrow function and regular function ?
+                        </div>
+                        <div class="collapse-content">
+                            <ul class="list-none">
+                                <li class="mb-2">1. In <b>regular</b> function there is an <b>argument</b> local
+                                    variable. But, in
+                                    <b>arrow</b> function
+                                    threre is no <b>arguments</b>;
+                                </li>
+                                <li class="mb-2">2. <b>return</b> keyword can be omit if the <b>arrow</b> function has
+                                    only one line.
+                                    But in
+                                    <b>regular</b>
+                                    function you have to use <b>return</b> keyword for return something from a function.
+                                </li>
+                                <li class="mb-2">3. <b>regular</b> function allowed duplicate parameter name. But in
+                                    <b>arrow</b>
+                                    function can not
+                                    take duplicate parameter name.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-item-three mb-3">
+                    <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+                        <div class="collapse-title text-xl font-medium">
+                            What is the difference among map, forEach, filter and find ?
+                        </div>
+                        <div class="collapse-content">
+                            <ul class="list-none">
+                                <li class="mb-2">1. <b>forEach() :</b> forEach function has called for all the array
+                                    single element.
+                                    It's using for looping in an array.</li>
+                                <li class="mb-2">2. <b>map() :</b> map function is almost similar to forEach. The
+                                    difference is
+                                    forEach function don't need return anything. But in map it has called for all the
+                                    array single element and return an array.</li>
+                                <li class="mb-2">3. <b>filter() :</b> filter method use to filtering an array based on a
+                                    condition
+                                    and it's return an output in an array.</li>
+                                <li class="mb-2">4. <b>find() :</b> find method is similar to filter method. The
+                                    difference is find
+                                    method return only first match element based on condition.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-item-four mb-3">
+                    <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+                        <div class="collapse-title text-xl font-medium">
+                            Why we should use Template String ?
+                        </div>
+                        <div class="collapse-content">
+                            <p>We can dynamicallay generate value using <b>Template Literals String.</b> It lets us
+                                <b>insert/interpolate</b> variables and expressions into strings without needing to
+                                concatenate
+                                like in older versions of JavaScript.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2"></div>
+        </section>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -79,17 +79,17 @@ const showNews = (newsList) => {
                 <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
                 <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' : news.details}</p>
 
-                <div class="grid grid-cols-4 mt-5">
-                    <div class="flex items-center">
+                <div class="grid grid-cols-2 lg:grid-cols-4 mt-5">
+                    <div class="col-span-1 flex items-center">
                         <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
                         <h5 class="ml-3 font-semibold">${news.author.name ? news.author.name : 'no data found'}</h5>
                     </div>
-                    <div class="flex items-center justify-center">
+                    <div class="col-span-1 flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
                         <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
                     </div>
-                    <div class="flex justify-center items-center">
-                        <div>
+                    <div class="col-span-1 flex justify-center items-center">
+                        <div class="hidden lg:block">
                             <span><i class="fa-solid fa-star-half-stroke"></i></span>
                             <span><i class="fa-regular fa-star"></i></span>
                             <span><i class="fa-regular fa-star"></i></span>
@@ -97,7 +97,7 @@ const showNews = (newsList) => {
                             <span><i class="fa-regular fa-star"></i></span>
                         </div>
                     </div>
-                    <div class="text-right">
+                    <div class="text-center lg:text-right col-span-12 lg:col-span-1 mt-4 lg:mt-0">
                     <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Show Details <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
                     </div>
                 </div>
@@ -151,15 +151,15 @@ const showNewsDetails = (newsDetails) => {
     <h3 class="text-lg font-bold my-4">${newsDetails.title}</h3>
     <p>${newsDetails.details}</p>
     <div class="grid grid-cols-12 mt-5">
-                    <div class="col-span-4 flex items-center">
+                    <div class="col-span-6 lg:col-span-4 flex items-center">
                         <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
                         <h5 class="ml-3 font-semibold">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
                     </div>
-                    <div class="col-span-4 flex items-center justify-center">
+                    <div class="col-span-6 lg:col-span-4 flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
                         <h5 class="ml-3 font-semibold">${newsDetails.total_view ? newsDetails.total_view + 'M' : 'No data found'}</h5>
                     </div>
-                    <div class="col-span-4 flex justify-end items-center">
+                    <div class="col-span-12 lg:col-span-4 flex justify-center lg:justify-end items-center">
                         <div>
                             <span><i class="fa-solid fa-star-half-stroke"></i></span>
                             <span><i class="fa-regular fa-star"></i></span>
