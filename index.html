@@ -32,12 +32,13 @@
         </div>
     </header>
 
-    <main style="width: 1200px;" class="mx-auto mt-8">
+    <main class="container mx-auto mt-8">
         <!-- nav bar section -->
-        <nav class="grid grid-cols-12 bg-gray-50 py-5 my-5">
-            <div onclick="fetchNews('08')" class="col-span-1 font-semibold flex justify-center items-center">Home</div>
-            <div class="home-catagories col-span-11">
-                <div id="catagories-div" class="grid grid-cols-8"></div>
+        <nav class="grid grid-cols-1 lg:grid-cols-12 bg-gray-50 py-5 my-5">
+            <div onclick="fetchNews('08')" class="col lg:col-span-1 font-semibold flex justify-center items-center">Home
+            </div>
+            <div class="home-catagories col lg:col-span-11">
+                <div id="catagories-div" class="grid grid-cols-2 lg:grid-cols-8"></div>
             </div>
         </nav>
 
@@ -52,12 +53,13 @@
 
         <!-- sort news section -->
         <section class="my-8">
-            <div class="grid grid-cols-2">
-                <div class="flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="flex justify-center lg:justify-start lg:text-left mb-5 lg:mb-0">
                     <h1 class="mr-4 font-semibold text-xl">Sort By :</h1>
-                    <div><input type="text" placeholder="Default" class="py-2 border rounded-md pl-4" /></div>
+                    <div><input type="text" readonly placeholder="Default"
+                            class="py-2 border rounded-md pl-4 focus:outline-none" /></div>
                 </div>
-                <div class="text-right">
+                <div class="text-center lg:text-right">
                     <button class="py-2 px-8 bg-blue-600 text-white mr-4 rounded-full">Today's Pick</button>
                     <button class="border border-blue-600 py-2 px-8 text-blue-600 rounded-full">Trending</button>
                 </div>
@@ -88,7 +90,7 @@
         </section>
     </main>
 
-    <footer id="footer" style="height: 120px;" class="bg-black mt-10 text-white flex justify-center items-center">
+    <footer id="footer" style="height: 120px;" class="bg-slate-800 mt-10 text-white flex justify-center items-center">
         <p>Copyright @ 2022 All Rights Reserved By Rakib Mojumber.</p>
     </footer>
 

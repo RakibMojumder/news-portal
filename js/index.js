@@ -71,18 +71,18 @@ const showNews = (newsList) => {
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('container', 'mx-auto', 'm-5');
         containerDiv.innerHTML = `
-        <div class="row grid grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
-            <div class="col-span-2">
-                <img src="${news.thumbnail_url}" alt="">
+        <div class="row grid grid-cols-1 lg:grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
+            <div class="col lg:col-span-2">
+                <img src="${news.thumbnail_url}" class="mx-auto" alt="">
             </div>
-            <div class="col-span-10 p-5">
+            <div class="col lg:col-span-10 p-5">
                 <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
                 <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' : news.details}</p>
 
                 <div class="grid grid-cols-4 mt-5">
                     <div class="flex items-center">
                         <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
-                        <h5 class="ml-3">${news.author.name ? news.author.name : 'no data found'}</h5>
+                        <h5 class="ml-3 font-semibold">${news.author.name ? news.author.name : 'no data found'}</h5>
                     </div>
                     <div class="flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
@@ -153,7 +153,7 @@ const showNewsDetails = (newsDetails) => {
     <div class="grid grid-cols-12 mt-5">
                     <div class="col-span-4 flex items-center">
                         <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
-                        <h5 class="ml-3">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
+                        <h5 class="ml-3 font-semibold">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
                     </div>
                     <div class="col-span-4 flex items-center justify-center">
                         <div><i class="fa-solid fa-eye"></i></div>
