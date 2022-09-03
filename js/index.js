@@ -15,13 +15,14 @@ const fetchNewsCatagories = async () => {
 
 // show news catagories
 const showCatagories = catagoriesList => {
-
     const catagoriesDiv = document.getElementById('catagories-div');
     catagoriesList.forEach(catagories => {
+        const { category_id: categoryId, category_name: categoryName } = catagories;
+
         const div = document.createElement('div');
         div.classList.add('text-center', 'font-semibold')
         div.innerHTML = `
-        <button onclick="fetchNews('${catagories.category_id}')" class="focus:underline underline-offset-4 focus:text-blue-600">${catagories.category_name}</button>
+        <button onclick="fetchNews('${categoryId}', '${categoryName}')" class="focus:underline underline-offset-4 focus:text-blue-600">${catagories.category_name}</button>
         `;
 
         catagoriesDiv.appendChild(div);
@@ -30,12 +31,13 @@ const showCatagories = catagoriesList => {
 
 
 // fetch news
-const fetchNews = async (id) => {
+const fetchNews = async (id, categoryName) => {
+    // console.log(categoryName)
     loadSpinner(true);
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         const result = await res.json()
-        showNews(result.data)
+        showNews(result.data, categoryName)
     }
     catch (err) {
         console.log(err);
@@ -43,8 +45,9 @@ const fetchNews = async (id) => {
 }
 
 // show news
-const showNews = (newsList) => {
+const showNews = (newsList, categoryName) => {
 
+    // footer fixed in bottom
     if (newsList.length === 0) {
         loadSpinner(false);
         const footer = document.getElementById('footer');
@@ -64,7 +67,7 @@ const showNews = (newsList) => {
 
     //get news number input feild
     const newsNumberInputFeild = document.getElementById('news-number-input-feild');
-    newsNumberInputFeild.value = `${newsList.length === 0 ? 'No data found' : newsList.length + ' items found'}`;
+    newsNumberInputFeild.value = `${newsList.length === 0 ? 'No news found for ' + categoryName : newsList.length + ' news found for ' + (categoryName ? categoryName : 'Home')}`;
     newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
 
     sortNewsList.forEach(news => {
@@ -98,7 +101,7 @@ const showNews = (newsList) => {
                         </div>
                     </div>
                     <div class="text-center lg:text-right col-span-12 lg:col-span-1 mt-4 lg:mt-0">
-                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Show Details <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
+                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Details <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
                     </div>
                 </div>
             </div>
