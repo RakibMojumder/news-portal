@@ -47,6 +47,11 @@ const showNews = (newsList) => {
 
     if (newsList.length === 0) {
         loadSpinner(false);
+        const footer = document.getElementById('footer');
+        footer.classList.add('fixed', 'bottom-0', 'w-full')
+    } else {
+        const footer = document.getElementById('footer');
+        footer.classList.remove('fixed', 'bottom-0', 'w-full')
     }
 
     // sorted all news
@@ -168,5 +173,5 @@ const showNewsDetails = (newsDetails) => {
     modalBody.appendChild(div)
 }
 
-fetchNews('08')
+fetchNews('08');
 fetchNewsCatagories();
