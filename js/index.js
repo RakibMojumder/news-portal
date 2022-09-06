@@ -172,11 +172,17 @@ const showNewsDetails = (newsDetails) => {
 }
 
 
-// Todays pick 
+
+
+// Todays pick news
 document.getElementById('todays-pick').addEventListener('click', () => {
     fetchForTodaysPickNews('08');
 })
 
+// trending news
+document.getElementById('trending').addEventListener('click', () => {
+    fetchForTrendingNews('08');
+})
 
 fetchNews('08');
 fetchNewsCatagories();
