@@ -15,6 +15,7 @@ const fetchNewsCatagories = async () => {
 
 // show news catagories
 const showCatagories = catagoriesList => {
+    // console.log(catagoriesList);
     const catagoriesDiv = document.getElementById('catagories-div');
     catagoriesList.forEach(catagories => {
         const { category_id: categoryId, category_name: categoryName } = catagories;
@@ -30,9 +31,8 @@ const showCatagories = catagoriesList => {
 }
 
 
-// fetch news
+// fetch news data
 const fetchNews = async (id, categoryName) => {
-    // console.log(categoryName)
     loadSpinner(true);
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
@@ -44,7 +44,7 @@ const fetchNews = async (id, categoryName) => {
     }
 }
 
-// show news
+// show news data
 const showNews = (newsList, categoryName) => {
 
     // footer fixed in bottom
@@ -57,6 +57,12 @@ const showNews = (newsList, categoryName) => {
         footer.classList.remove('fixed', 'bottom-0', 'w-full')
     }
 
+
+    //get news number input feild
+    const newsNumberInputFeild = document.getElementById('news-number-input-feild');
+    newsNumberInputFeild.value = `${newsList.length === 0 ? 'No news found for ' + categoryName : newsList.length + ' news found for ' + (categoryName ? categoryName : 'Home')}`;
+    newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
+
     // sorted all news
     const sortNewsList = newsList.sort((a, b) => b.total_view - a.total_view);
 
@@ -65,48 +71,46 @@ const showNews = (newsList, categoryName) => {
     newsSectionDiv.innerHTML = '';
 
 
-    //get news number input feild
-    const newsNumberInputFeild = document.getElementById('news-number-input-feild');
-    newsNumberInputFeild.value = `${newsList.length === 0 ? 'No news found for ' + categoryName : newsList.length + ' news found for ' + (categoryName ? categoryName : 'Home')}`;
-    newsNumberInputFeild.classList.add('font-semibold', 'text-xl');
-
     sortNewsList.forEach(news => {
+        // console.log(news)
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('container', 'mx-auto', 'm-5');
         containerDiv.innerHTML = `
-        <div class="row grid grid-cols-1 lg:grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
-            <div class="col lg:col-span-2">
-                <img src="${news.thumbnail_url}" class="mx-auto" alt="">
-            </div>
-            <div class="col lg:col-span-10 p-5">
-                <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
-                <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' : news.details}</p>
+    <div class="row grid grid-cols-1 lg:grid-cols-12 gap-4 p-5 shadow-md rounded-lg">
+        <div class="col lg:col-span-2">
+            <img src="${news.thumbnail_url}" class="mx-auto" alt="">
+        </div>
+        <div class="col lg:col-span-10 p-5">
+            <h3 class="text-2xl font-semibold mb-4">${news.title}</h3>
+            <p class="text-gray-400">${news.details.length > 500 ? news.details.slice(0, 500) + '...' : news.details}</p>
 
-                <div class="grid grid-cols-2 lg:grid-cols-4 mt-5">
-                    <div class="col-span-1 flex items-center">
-                        <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
-                        <h5 class="ml-3 font-semibold">${news.author.name ? news.author.name : 'no data found'}</h5>
+            <div class="grid grid-cols-2 lg:grid-cols-4 mt-5">
+                <div class="col-span-1 flex items-center">
+                    <img class="h-10 w-10 rounded-full" src="${news.author.img}" alt="">
+                    <h5 class="ml-3 font-semibold">${news.author.name ? news.author.name : 'no data found'}</h5>
+                </div>
+                <div class="col-span-1 flex items-center justify-center">
+                    <div><i class="fa-solid fa-eye"></i></div>
+                    <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
+                </div>
+                <div class="col-span-1 flex justify-center items-center">
+                    <div class="hidden lg:block">
+                        <span><i class="fa-solid fa-star-half-stroke"></i></span>
+                        <span><i class="fa-regular fa-star"></i></span>
+                        <span><i class="fa-regular fa-star"></i></span>
+                        <span><i class="fa-regular fa-star"></i></span>
+                        <span><i class="fa-regular fa-star"></i></span>
                     </div>
-                    <div class="col-span-1 flex items-center justify-center">
-                        <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3 font-semibold">${news.total_view ? news.total_view + 'M' : 'no data found'}</h5>
-                    </div>
-                    <div class="col-span-1 flex justify-center items-center">
-                        <div class="hidden lg:block">
-                            <span><i class="fa-solid fa-star-half-stroke"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                        </div>
-                    </div>
-                    <div class="text-center lg:text-right col-span-12 lg:col-span-1 mt-4 lg:mt-0">
-                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3" class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Details <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label> 
-                    </div>
+                </div>
+                <div class="text-center lg:text-right col-span-12 lg:col-span-1 mt-4 lg:mt-0">
+                    <label onclick="fetchNewsDetails('${news._id}')" for="my-modal-3"
+                        class="btn modal-button bg-blue-600 border border-blue-600 hover:bg-blue-600 px-6 rounded-full text-white">Details
+                        <span><i class="fa-solid fa-arrow-right-long ml-2"></i></span></label>
                 </div>
             </div>
         </div>
-        `;
+    </div>
+    `;
 
         newsSectionDiv.appendChild(containerDiv);
     });
@@ -114,16 +118,6 @@ const showNews = (newsList, categoryName) => {
     loadSpinner(false);
 }
 
-
-// load spinner
-const loadSpinner = (isLoading) => {
-    const spinner = document.getElementById('spinner');
-    if (isLoading) {
-        spinner.classList.remove('hidden');
-    } else {
-        spinner.classList.add('hidden');
-    }
-}
 
 
 
@@ -143,7 +137,6 @@ const fetchNewsDetails = async (newsId) => {
 
 // show newa details 
 const showNewsDetails = (newsDetails) => {
-    console.log(newsDetails);
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = '';
 
@@ -154,27 +147,36 @@ const showNewsDetails = (newsDetails) => {
     <h3 class="text-lg font-bold my-4">${newsDetails.title}</h3>
     <p>${newsDetails.details}</p>
     <div class="grid grid-cols-12 mt-5">
-                    <div class="col-span-6 lg:col-span-4 flex items-center">
-                        <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
-                        <h5 class="ml-3 font-semibold">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
-                    </div>
-                    <div class="col-span-6 lg:col-span-4 flex items-center justify-center">
-                        <div><i class="fa-solid fa-eye"></i></div>
-                        <h5 class="ml-3 font-semibold">${newsDetails.total_view ? newsDetails.total_view + 'M' : 'No data found'}</h5>
-                    </div>
-                    <div class="col-span-12 lg:col-span-4 flex justify-center lg:justify-end items-center">
-                        <div>
-                            <span><i class="fa-solid fa-star-half-stroke"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <span><i class="fa-regular fa-star"></i></span>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-span-6 lg:col-span-4 flex items-center">
+            <img class="h-10 w-10 rounded-full" src="${newsDetails.author.img}" alt="">
+            <h5 class="ml-3 font-semibold">${newsDetails.author.name ? newsDetails.author.name : 'No data found'}</h5>
+        </div>
+
+        <div class="col-span-6 lg:col-span-4 flex items-center justify-center">
+            <div><i class="fa-solid fa-eye"></i></div>
+            <h5 class="ml-3 font-semibold">${newsDetails.total_view ? newsDetails.total_view + 'M' : 'No data found'}</h5>
+        </div>
+
+        <div class="col-span-12 lg:col-span-4 flex justify-center lg:justify-end items-center">
+            <div>
+                <span><i class="fa-solid fa-star-half-stroke"></i></span>
+                <span><i class="fa-regular fa-star"></i></span>
+                <span><i class="fa-regular fa-star"></i></span>
+                <span><i class="fa-regular fa-star"></i></span>
+                <span><i class="fa-regular fa-star"></i></span>
+            </div>
+        </div>
+    </div>
     `;
     modalBody.appendChild(div)
 }
+
+
+// Todays pick 
+document.getElementById('todays-pick').addEventListener('click', () => {
+    fetchForTodaysPickNews('08');
+})
+
 
 fetchNews('08');
 fetchNewsCatagories();
