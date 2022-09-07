@@ -41,7 +41,7 @@ const showTodaysPickNews = (allNews) => {
 
     // todays pick news field
     const newsNumberInputFeild = document.getElementById('news-number-input-feild');
-    newsNumberInputFeild.value = todaysPick.length + ' news found for Todays Pick';
+    newsNumberInputFeild.value = 'Todays Pick news';
 
     // console.log(todaysPick)
     todaysPick.forEach(news => {
